@@ -60,7 +60,7 @@ public class Main {
         // Exercício 10
         List<String> newStrings = Arrays.asList("dunder", "mifflin", "michael", "scott", "paper");
         List<String> mergedList = IntStream
-                .range(0, Math.max(strings.size(), newStrings.size()))
+                .range(0, strings.size())
                 .mapToObj(i -> Stream.of(strings.get(i), newStrings.get(i)).toList())
                 .flatMap(s -> s.stream())
                 .toList();
