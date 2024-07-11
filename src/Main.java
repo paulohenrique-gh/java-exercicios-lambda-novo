@@ -3,6 +3,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Main {
@@ -58,7 +59,11 @@ public class Main {
 
         // Exercício 10
         List<String> newStrings = Arrays.asList("dunder", "mifflin", "michael", "scott", "paper");
-        List<String> mergedList = Stream.of(strings, newStrings).flatMap(s -> s.stream()).toList();
+        List<String> mergedList = IntStream
+                .range(0, Math.max(strings.size(), newStrings.size()))
+                .mapToObj(i -> Stream.of(strings.get(i), newStrings.get(i)).toList())
+                .flatMap(s -> s.stream())
+                .toList();
         System.out.println("Merged list: " + mergedList);
     }
 }
